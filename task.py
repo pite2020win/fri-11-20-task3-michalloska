@@ -32,3 +32,38 @@
 #Delete these comments before commit!
 #
 #Good luck.
+import logging 
+
+class matrix_2x2:
+
+  def __init__(self, data = "None", width = 2, height = 2):
+    self.width = width
+    self.height = height
+    self.Matrix = [[0 for i in range(self.width)] for j in range(self.height)]
+    if data != "None":
+      for i in range(self.width):
+        for j in range(self.height):
+          self.Matrix[i][j] = data[i][j]
+
+
+  def displayMatrix(self):
+    logging.info("Displaying a Matrix:")
+    for i in range(self.width):
+      for j in range(self.height):
+        print("{} ".format(self.Matrix[i][j]), end='')
+      print("\n")
+
+def add_matrices(matrix1, matrix2):
+  pass
+
+if __name__ == "__main__":
+  logging.basicConfig(level=logging.DEBUG)
+
+  filledMatrix1 = matrix_2x2([[1,2],[3,4]])
+  filledMatrix2 = matrix_2x2([[4,3],[2,1]])
+  emptyMatrix = matrix_2x2()
+  filledMatrix1.displayMatrix()
+  filledMatrix2.displayMatrix()
+  emptyMatrix.displayMatrix()
+
+  sum_product = add_matrices(filledMatrix1, filledMatrix2)

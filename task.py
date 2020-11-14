@@ -81,14 +81,17 @@ class SquareMatrix:
         additionProdut = SquareMatrix(data="Empty", size=self.size)
 
         if secondOperand["type"] == "int":
-            additionProdut = self._calculateWithOperand(self, '+', secondMatrix, additionProdut)
+            additionProdut = self._calculateWithOperand(
+                self, '+', secondMatrix, additionProdut)
         elif secondOperand["type"] == "matrix":
-            additionProdut = self._calculateMatrices(self, '+', secondMatrix, additionProdut)
+            additionProdut = self._calculateMatrices(
+                self, '+', secondMatrix, additionProdut)
         return additionProdut
 
     def __radd__(self, secondOperand: int):
         additionProdut = SquareMatrix(data="Empty", size=self.size)
-        additionProdut = self._calculateWithOperand(self, '+', secondOperand, additionProdut)
+        additionProdut = self._calculateWithOperand(
+            self, '+', secondOperand, additionProdut)
         return additionProdut
 
     def __sub__(self, secondMatrix):
@@ -96,9 +99,11 @@ class SquareMatrix:
         subtractionProduct = SquareMatrix(data="Empty", size=self.size)
 
         if secondOperand["type"] == "int":
-            subtractionProduct = self._calculateWithOperand(self, '-', secondMatrix, subtractionProduct)
+            subtractionProduct = self._calculateWithOperand(
+                self, '-', secondMatrix, subtractionProduct)
         elif secondOperand["type"] == "matrix":
-            subtractionProduct = self._calculateMatrices(self, '-', secondMatrix, subtractionProduct)
+            subtractionProduct = self._calculateMatrices(
+                self, '-', secondMatrix, subtractionProduct)
         return subtractionProduct
 
     def __rsub__(self, secondOperand: int):
@@ -112,11 +117,13 @@ class SquareMatrix:
         multiplicationProduct = SquareMatrix(data="Empty", size=self.size)
 
         if secondOperand["type"] == "int":
-            multiplicationProduct = self._calculateWithOperand(self, '*', secondMatrix, multiplicationProduct)
+            multiplicationProduct = self._calculateWithOperand(
+                self, '*', secondMatrix, multiplicationProduct)
         elif secondOperand["type"] == "matrix":
-            multiplicationProduct = self._calculateMatrices(self, '*', secondMatrix, multiplicationProduct)
+            multiplicationProduct = self._calculateMatrices(
+                self, '*', secondMatrix, multiplicationProduct)
         return multiplicationProduct
-    
+
     def __rmul__(self, secondOperand: int):
         multiplicationProduct = SquareMatrix(data="Empty", size=self.size)
         multiplicationProduct = self._calculateWithOperand(
@@ -128,11 +135,13 @@ class SquareMatrix:
         multiplicationProduct = SquareMatrix(data="Empty", size=self.size)
 
         if secondOperand["type"] == "int":
-            multiplicationProduct = self._calculateWithOperand(self, '/', secondMatrix, multiplicationProduct)
+            multiplicationProduct = self._calculateWithOperand(
+                self, '/', secondMatrix, multiplicationProduct)
         elif secondOperand["type"] == "matrix":
-            multiplicationProduct = self._calculateMatrices(self, '/', secondMatrix, multiplicationProduct)
+            multiplicationProduct = self._calculateMatrices(
+                self, '/', secondMatrix, multiplicationProduct)
         return multiplicationProduct
-    
+
     def __rtruediv__(self, secondOperand: int):
         multiplicationProduct = SquareMatrix(data="Empty", size=self.size)
         multiplicationProduct = self._calculateWithOperand(
@@ -144,26 +153,32 @@ class SquareMatrix:
         secondOperand = self._validateMatricesSizes(self, secondMatrix)
         multiplicationProduct = SquareMatrix(data="Empty", size=self.size)
         if secondOperand["type"] == "int":
-            multiplicationProduct = self._calculateWithOperand(self, '*', secondMatrix, subtractionProduct)
+            multiplicationProduct = self._calculateWithOperand(
+                self, '*', secondMatrix, multiplicationProduct)
         if secondOperand["type"] == "matrix":
             for i in range(len(self.Matrix)):
                 for j in range(len(secondMatrix.Matrix[0])):
                     for k in range(len(secondMatrix.Matrix)):
-                        multiplicationProduct.Matrix[i][j] += self.Matrix[i][k] * secondMatrix.Matrix[k][j]
-        return multiplicationProduct    
+                        multiplicationProduct.Matrix[i][j] += self.Matrix[i][k] * \
+                            secondMatrix.Matrix[k][j]
+        return multiplicationProduct
 
     def _calculateWithOperand(self, firstOperand, operator, secondOperand, result):
-        logging.info("Ongoing Operation: Matrix {} {}".format(operator, secondOperand))
+        logging.info("Ongoing Operation: Matrix {} {}".format(
+            operator, secondOperand))
         for i in range(firstOperand.size):
             for j in range(firstOperand.size):
-                result.Matrix[i][j] = eval("firstOperand.Matrix[i][j]" + operator + "secondOperand")
+                result.Matrix[i][j] = eval(
+                    "firstOperand.Matrix[i][j]" + operator + "secondOperand")
         return result
-    
+
     def _calculateMatrices(self, firstOperand, operator, secondOperand, result):
-        logging.info("calculating Matrices, operation operator: {}".format(operator))
+        logging.info(
+            "calculating Matrices, operation operator: {}".format(operator))
         for i in range(firstOperand.size):
             for j in range(firstOperand.size):
-                result.Matrix[i][j] = eval("firstOperand.Matrix[i][j]" + operator + "secondOperand.Matrix[i][j]")
+                result.Matrix[i][j] = eval(
+                    "firstOperand.Matrix[i][j]" + operator + "secondOperand.Matrix[i][j]")
         return result
 
     def _createEmptyMatrixOfSize(self, size):
@@ -190,7 +205,7 @@ class SquareMatrix:
 
 
 if __name__ == "__main__":
-    
+
     # Displaying info logs for better comprehension of the example operations presented below
     logging.basicConfig(level=logging.DEBUG)
 
